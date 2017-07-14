@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/library/js/jquery/jquery-1.9.1.min.js"></script>
+        <title>首页</title>
+    </head>
+    <body>
+        <h1> Xapian </h1>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.name.label  }}
+            {{ form.name() }}
+            {{ form.submit() }}
+        </form>
+        {% if name %}
+            {{ name|replace('$', '</br>') }}
+            <p> { name } </p>
+        {% else %}
+            <p>No corresponding result!</p>
+        {% endif %}
+
+         <script type="text/javascript">
+            text = {{ name }}.replace('$', '<br/>')
+            </script>
+    </body>
+</html>
