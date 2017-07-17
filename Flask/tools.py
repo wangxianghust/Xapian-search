@@ -5,7 +5,45 @@ import xapian
 import support
 from server_format import str_parser
 
-def search(dbpath, querystring, offset=0, pagesize=10):
+def select_weight(option):
+	if option == 0:
+		bm = xapian.BM25Weight(1.0, 0.0, 1.0, 0.5, 0.3)
+	elif option == 1:
+		bm = xapian.BoolWeight()
+	elif option == 2:
+		bm = xapian.BB2Weight(1.0)
+	elif option == 3:
+		bm = xapian.BM25PlusWeight(1.0, 0, 1.0, 0.5, 0.5, 1.0)
+	elif option == 4:
+		bm = 
+	elif option == 5:
+		bm = 
+	elif option == 6:
+		bm = 
+	elif option == 7:
+		bm = 
+	elif option == 8:
+		bm = 
+	elif option == 9:
+		bm = 
+	elif option == 10:
+		bm = 
+	elif option == 11:
+		bm = 
+	elif option == 12:
+		bm = 
+	elif option == 13:
+		bm = 
+	elif option == 14:
+		bm = 
+	elif option == 15:
+		bm = 
+
+	return bm
+
+#End of the funcion 
+
+def search(dbpath, querystring, offset=0, pagesize=10, option=0):
 	# offset - defines starting point within result set
 	# pagesize - defines number of records to retrive
 	db = xapian.Database(dbpath)
@@ -21,6 +59,11 @@ def search(dbpath, querystring, offset=0, pagesize=10):
 	query = queryparser.parse_query(querystring)
 
 	enquire = xapian.Enquire(db)
+
+	#select different weighting schema
+	bm = select_weight(option)
+	enquire.set_weighting_scheme(bm)
+
 	enquire.set_query(query)
 
 	matches = []

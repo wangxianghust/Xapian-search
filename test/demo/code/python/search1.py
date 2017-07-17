@@ -18,6 +18,10 @@ def search(dbpath, querystring, offset=0, pagesize=10):
 	query = queryparser.parse_query(querystring)
 
 	enquire = xapian.Enquire(db)
+	#####Schema Test
+	#bm = xapian.BM25Weight(1.0, 0.0, 1.0, 0.5, 0.3)
+	#enquire.set_weighting_scheme(bm)
+
 	enquire.set_query(query)
 
 	matches = []
