@@ -9,7 +9,7 @@ from tools import search
 DB_PATH = 'db'
 
 class IRForm(Form): 
-	name = StringField('Please enter: ',validators=[Required()]) 
+	name = StringField('Please enter the statement you want to check: ',validators=[Required()]) 
 	submit = SubmitField('Submit') 
 
 app = Flask(__name__) 
@@ -26,7 +26,7 @@ def index():
 		name = nameForm.name.data
 		nameForm.name.data = ''
 		tmp = 'Retrive results: \n'+search(DB_PATH, name)
-		ret = tmp.replace('\n','$')
+		ret = tmp.split("\n")
 	
 	return render_template('index.html',form=nameForm,name=ret) 
 

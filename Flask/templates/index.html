@@ -1,6 +1,5 @@
 <html>
     <head>
-        <script type="text/javascript" src="/library/js/jquery/jquery-1.9.1.min.js"></script>
         <title>首页</title>
     </head>
     <body>
@@ -13,14 +12,11 @@
             {{ form.submit() }}
         </form>
         {% if name %}
-            {{ name|replace('$', '</br>') }}
-            <p> { name } </p>
+            {% for row in name %}
+                <p>{{ row }}</p>
+            {% endfor %}
         {% else %}
             <p>No corresponding result!</p>
         {% endif %}
-
-         <script type="text/javascript">
-            text = {{ name }}.replace('$', '<br/>')
-            </script>
     </body>
 </html>
