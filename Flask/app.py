@@ -43,7 +43,7 @@ def index():
 		if InformationForm.validate_on_submit():
 			statement = InformationForm.statement.data
 			weightOption = InformationForm.scheme.data
-			InformationForm.statement.data = ''
+			#InformationForm.statement.data = ''
 			tmp = 'Retrive results: \n'+search(DB_PATH, statement, weightOption)
 			ret = tmp.split("\n")
 
