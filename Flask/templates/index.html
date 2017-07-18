@@ -3,16 +3,25 @@
         <title>首页</title>
     </head>
     <body>
-        <h1> Xapian </h1>
+        <h1>Xapian</h1>
 
         <form method="POST">
             {{ form.hidden_tag() }}
-            {{ form.name.label  }}
-            {{ form.name() }}
+            {{ form.csrf_token }}
+            <div>
+            {{ form.statement.label }}
+            {{ form.statement() }}
+            </div></br>
+            <div>
+            {{ form.scheme.label }}
+            {{ form.scheme() }}
+            </div></br>
+            <div>
             {{ form.submit() }}
+            </div></br>
         </form>
-        {% if name %}
-            {% for row in name %}
+        {% if statement %}
+            {% for row in statement %}
                 <p>{{ row }}</p>
             {% endfor %}
         {% else %}
