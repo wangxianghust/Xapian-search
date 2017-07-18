@@ -35,7 +35,7 @@ bootstrap = Bootstrap(app)
 @app.route('/',methods=['GET','POST']) 
 def index(): 
 	statement = None
-	weightOption = 1
+	weightOption = 2
 	InformationForm = IRForm(request.form)
 	ret = []
 

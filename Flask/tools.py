@@ -7,43 +7,41 @@ from server_format import str_parser
 
 def select_weight(option):
 	if option == 0:
-		bm = xapian.BM25Weight(1.0, 0.0, 1.0, 0.5, 0.3)
+		bm = xapian.BB2Weight(1.0)		
 	elif option == 1:
-		bm = xapian.BoolWeight()
-	elif option == 2:
-		bm = xapian.BB2Weight(1.0)
-	elif option == 3:
 		bm = xapian.BM25PlusWeight(1.0, 0, 1.0, 0.5, 0.5, 1.0)
+	elif option == 2:
+		bm = xapian.BM25Weight(1.0, 0.0, 1.0, 0.5, 0.3)
+	elif option == 3:		
+		bm = xapian.BoolWeight()
 	elif option == 4:
-		bm = 
+		bm = xapian.CoordWeight()
 	elif option == 5:
-		bm = 
+		bm = xapian.DLHWeight()  #maybe some problem
 	elif option == 6:
-		bm = 
+		bm = xapian.DPHWeight()
 	elif option == 7:
-		bm = 
-	elif option == 8:
-		bm = 
+		bm = xapian.IfB2Weight(1)
+	elif  option == 8:
+		bm = xapian.IneB2Weight(1)
 	elif option == 9:
-		bm = 
+		bm = xapian.InL2Weight(1)
 	elif option == 10:
-		bm = 
+		bm = xapian.LMWeight(0.0, 1, -1.0, -1.0)  #the second parameter is TWO_STAGE_SMOOTHING
 	elif option == 11:
-		bm = 
+		bm = xapian.PL2PlusWeight(1, 0.8)
 	elif option == 12:
-		bm = 
+		bm = xapian.PL2Weight(1)
 	elif option == 13:
-		bm = 
+		bm = xapian.TfIdfWeight("ntn")
 	elif option == 14:
-		bm = 
-	elif option == 15:
-		bm = 
+		bm = xapian.TradWeight(1.0)
 
 	return bm
 
 #End of the funcion 
 
-def search(dbpath, querystring, offset=0, pagesize=10, option=0):
+def search(dbpath, querystring, option=0, offset=0, pagesize=10):
 	# offset - defines starting point within result set
 	# pagesize - defines number of records to retrive
 	db = xapian.Database(dbpath)
